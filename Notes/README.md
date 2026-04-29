@@ -53,8 +53,8 @@
 - In REST APIs, we usually design and talk about the **URI**, but when making actual requests from frontend or Postman, we use the **full URL**.
 
 ### Simple Analogy:
-- **URI** → The order number on the menu (`/students/2`)
-- **URL** → The full address of the restaurant + the order (`https://api.example.com/students/2`)
+- **URI** → The order number on the menu (`/students/2 or, "Order #2" or "Paneer Curry"`)
+- **URL** → The full address of the restaurant + the order (`https://api.example.com/students/2 or "Restaurant ABC, Kathmandu + Order #2"`)
 
  
  ## URL Endpoints:
@@ -67,3 +67,36 @@ http://127.0.0.1:8000/students/
  ```bash
 http://127.0.0.1:8000/api/v1/students/
  ```
+
+ ## Manual Serialization:
+ **Serialization** = converting Django model data into a format like JSON so it can be sent to frontend or APIs.
+ **Manual serialization**: You convert model objects to JSON yourself, instead of using tools like Django REST Framework.
+
+## Error
+ In order to allow non-dict objects to be serialized set the safe parameter to False.
+Code:
+```bash
+def studentsView(request):
+  student = Student.objects.all()
+  print(student) ## <QuerySet [<Student: Rajesh Thapa>, <Student: Rohan Thapa>, <Student: Nabaraj Basnet>]>
+  return JsonResponse(student)
+```
+Here, we were sending the queryset in student but JsonResponse expects it to be a dictionary so we are manually serializing the data to JSON format.
+Code:
+```bash
+def studentsView(request):
+  student = Student.objects.all()
+  students_list = list(students.values())
+  return JsonResponse(students_list, safe=False)
+```
+Here, safe=False since we are not passing a dictionary rather a list
+
+- The manual serialization technique is not recommended for creating the APIs as we need more powerful tool to serialize the complex data which can also handle the validation for us. This is where the serializers comes in which is provided by Django restframeworks.
+
+## Serializers:
+Converting complex data (like Django models) into JSON or other specified format.
+
+## Deserializers:
+Converting JSON back into Python objects (and saving to DB) mostly QuerySet. 
+
+One common serializers is **Model Serializers** as it automatically creates a translator based on the structure of our model. So, there is no need of manually defining how the data should be converted.
