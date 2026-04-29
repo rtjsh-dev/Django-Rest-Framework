@@ -100,3 +100,5 @@ Converting complex data (like Django models) into JSON or other specified format
 Converting JSON back into Python objects (and saving to DB) mostly QuerySet. 
 
 One common serializers is **Model Serializers** as it automatically creates a translator based on the structure of our model. So, there is no need of manually defining how the data should be converted.
+
+## Function-Based View 
