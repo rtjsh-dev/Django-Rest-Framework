@@ -154,7 +154,8 @@ Used to delete an object using primary key.
 .destroy()
 ```
 
-- For mixins, we create a class-based view and inherit the required mixins. GeneralAPIView acts as a foundational class for building most API views. 
+- For mixins, we create a class-based view and inherit the required mixins. 
+GeneralAPIView acts as a foundational class for building most API views. 
 - It provides essential functionalities for handling incoming HTTP requests such as get, post, put and delete.
 - Provides proper HTML form for the post request
 ```bash
@@ -162,3 +163,16 @@ class Employee(mixins.ListModelMixin, generics.GenericAPIView):
   def get(self, request):
     return self.list(request)
 ```
+
+## Generics
+- Generics are class-based views in DRF that provide common CRUD functionality by combining GenericAPIView with mixins, reducing the need to write repetitive code.
+- It provides single API views like `ListAPIView`, `CreateAPIView`, `RetrieveAPIView`, `UpdateAPIView` and `DestroyAPIView` and combination of API views like `ListCreateAPIView`, `RetrieveUpdateAPIView` and `RetrieveUpdateDestroyAPIView`.  
+
+## ViewSets
+- As the name suggests, it is a set of views and it combines the functionalities of both views and serializers making it even easier to perform standard operations.
+
+- viewsets.ViewSet : Provides operation like list(), create(), retrieve(), update() and delete()
+
+- viewsets.ModelViewSet : Takes only queryset and serializer_class and automatically provides both pk based and non-pk based operations.
+
+- The way this viewset works is by something called Routers. The Router class automatically determines the URL Patterns for us. All we need to do is register our view to the Router class so, there is not need of creating the URL Pattern explicitly.
