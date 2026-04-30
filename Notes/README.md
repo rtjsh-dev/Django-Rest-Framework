@@ -102,3 +102,15 @@ Converting JSON back into Python objects (and saving to DB) mostly QuerySet.
 One common serializers is **Model Serializers** as it automatically creates a translator based on the structure of our model. So, there is no need of manually defining how the data should be converted.
 
 ## Function-Based View 
+A Function-Based View (FBV) is the simplest way to handle requests in frameworks like Django. It’s just a Python function that takes a request and returns a response. It is simply, a python function that receives a HTTP request and returns an HTTP response.
+
+## How it works
+- User sends request (browser / Postman)
+- Django URL dispatcher maps URL → function
+- Function executes logic
+- Returns response
+
+## Class-Based View
+- Class-based views provide more structured and organized way to handle requests using object-oriented principles. 
+- They take away conditional checks like if and elif used in function-based view and they instead use instance methods like get(), post(), put() and delete() and they will automatically be mapped to get the requests.
+- Code reusability is the major feature i.e. the same CRUD operation will be done in few lines of code.
