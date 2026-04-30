@@ -114,3 +114,51 @@ A Function-Based View (FBV) is the simplest way to handle requests in frameworks
 - Class-based views provide more structured and organized way to handle requests using object-oriented principles. 
 - They take away conditional checks like if and elif used in function-based view and they instead use instance methods like get(), post(), put() and delete() and they will automatically be mapped to get the requests.
 - Code reusability is the major feature i.e. the same CRUD operation will be done in few lines of code.
+
+# 🔹 Mixins (Django REST Framework)
+
+Mixins are **reusable code classes** in object-oriented programming that provide specific functionalities.
+
+In Django REST Framework, mixins are used to add common functionality to views such as **Create, Read, Update, and Delete (CRUD)** operations.
+
+---
+
+## 📌 ListModelMixin
+Used to **retrieve a list of objects** (multiple records).
+
+```python
+.list()
+```
+## 📌 CreateModelMixin:
+Used to create a new object in the database.
+```python
+.create()
+```
+## 📌 RetrieveModelMixin
+Used to retrieve a single object based on ID.
+```python
+.retrieve()
+```
+## 📌 UpdateModelMixin
+Used to update an existing object using primary key.
+
+```python
+.update() 
+.partial_update()
+```
+
+## 📌 DestroyModelMixin
+Used to delete an object using primary key.
+
+```python
+.destroy()
+```
+
+- For mixins, we create a class-based view and inherit the required mixins. GeneralAPIView acts as a foundational class for building most API views. 
+- It provides essential functionalities for handling incoming HTTP requests such as get, post, put and delete.
+- Provides proper HTML form for the post request
+```bash
+class Employee(mixins.ListModelMixin, generics.GenericAPIView):
+  def get(self, request):
+    return self.list(request)
+```
