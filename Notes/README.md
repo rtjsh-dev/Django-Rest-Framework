@@ -176,3 +176,14 @@ class Employee(mixins.ListModelMixin, generics.GenericAPIView):
 - viewsets.ModelViewSet : Takes only queryset and serializer_class and automatically provides both pk based and non-pk based operations.
 
 - The way this viewset works is by something called Routers. The Router class automatically determines the URL Patterns for us. All we need to do is register our view to the Router class so, there is not need of creating the URL Pattern explicitly.
+
+## Nested Serializers:
+Nested serializers are serializers used inside another serializer to represent related models (like ForeignKey, OneToOne, ManyToMany) in a structured, hierarchical JSON format.
+
+### Why use nested serializers
+- Show related data together in one API response
+- Avoid multiple API calls
+- Provide clean, structured JSON
+For example, in a `Blog` post, suppose we have many comments so to retrieve all comments of that individual `Blog` post at once, we use `Nested Serializers`.
+
+## Pagination
