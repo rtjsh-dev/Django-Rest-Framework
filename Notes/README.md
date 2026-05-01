@@ -356,3 +356,11 @@ Only affects this view and overrides global settings.
 - Global filters doesn't handle case-based mismatch so we use custom filters instead
 - Custom filters attribute:
 `iexact`: for case-insesitive matches
+
+## Advanced Filtering:
+- Use case: Retrieve all employees with IDs between `EMP002` and `EMP006`
+- Since the normal filtering only takes primary key as the context for filtering over a range so here, we use advanced filtering for the character based filtering
+
+## Search Filter:
+- DRF provides an in-built search field 
+- It is view specific like for `Employee` or `Blogs` views
